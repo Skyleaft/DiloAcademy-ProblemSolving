@@ -483,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 417839621}
   isProblem8: 0
+  isProblem9: 0
 --- !u!1 &879127716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,6 +1326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationX: 12.5
   locationY: 6.6
+  locationMinX: -12.5
+  locationMinY: -6.6
   MinspawnDelay: 1
   MaxspawnDelay: 9
   ItemSpawn: {fileID: 7381129840033109740, guid: c910a0d19d35e8044a7f1b6dc9eaf48c,

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     #endregion
     [SerializeField] private TextMeshProUGUI scoreText;
     public bool isProblem8;
+    public bool isProblem9;
     public int Score { get; private set; }
 
 

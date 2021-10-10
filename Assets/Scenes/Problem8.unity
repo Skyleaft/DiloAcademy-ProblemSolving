@@ -143,6 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationX: 12.5
   locationY: 6.6
+  locationMinX: -12.5
+  locationMinY: -6.6
   MinspawnDelay: 1
   MaxspawnDelay: 9
   ItemSpawn: {fileID: 7381129840033109740, guid: c910a0d19d35e8044a7f1b6dc9eaf48c,

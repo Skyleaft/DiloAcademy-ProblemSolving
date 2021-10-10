@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
 
     private Rigidbody2D rigidBody2D;
     public float speed;
+    public float speedboost;
+    public float boostDuration;
     Vector3 movement;
     int floorMask;
 
@@ -18,6 +21,14 @@ public class Ball : MonoBehaviour
     private bool isProblem4;
     [SerializeField]
     private bool isProblem5;
+    [SerializeField]
+    private bool isProblem9;
+
+    [SerializeField]
+    private Text boostText;
+
+    private TrailRenderer trail;
+    private float initSpeed;
 
     void Start()
     {
@@ -25,6 +36,34 @@ public class Ball : MonoBehaviour
         if (isProblem3)
         {
             PushBall();
+        }
+
+        if (isProblem9)
+        {
+            trail = gameObject.GetComponent<TrailRenderer>();
+            initSpeed = speed;
+        }
+
+    }
+
+    void Update()
+    {
+        if (isProblem9)
+        {
+            if (boostDuration >= 0)
+            {
+                speed = speedboost;
+                //tampilkan ui durasi nya
+                boostText.text = boostDuration.ToString("F2");
+                trail.startColor = Color.cyan;
+                boostDuration -= Time.deltaTime;
+            }
+            else
+            {
+                boostText.text = "";
+                trail.startColor = Color.red;
+                speed = initSpeed;
+            }
         }
     }
 
@@ -47,6 +86,17 @@ public class Ball : MonoBehaviour
         }
 
 
+    }
+
+    public void switchMode()
+    {
+        isProblem5 = !isProblem5;
+        isProblem4 = !isProblem4;
+    }
+
+    public void Boost(float _duration)
+    {
+        boostDuration += _duration;
     }
 
     public void Move(float h, float v)

@@ -26,12 +26,15 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private float locationX;
     [SerializeField] private float locationY;
+    [SerializeField] private float locationMinX;
+    [SerializeField] private float locationMinY;
     [SerializeField] private float MinspawnDelay=0.5f;
     [SerializeField] private float MaxspawnDelay=3;
     [SerializeField] private GameObject ItemSpawn;
     [SerializeField] private int maxItem;
     public Ball player;
     public float ballArea;
+    [SerializeField] private bool isProblem9;
 
     private float randomSpawnTime;
 
@@ -40,6 +43,10 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         if (GameManager.Instance.isProblem8)
+        {
+            SpawnItem();
+        }
+        if (isProblem9)
         {
             SpawnItem();
         }
@@ -67,7 +74,11 @@ public class Spawner : MonoBehaviour
         //random spawn position
         var obj = Instantiate(ItemSpawn, positionInRange(), this.transform.rotation, this.gameObject.transform);
         //random scale
-        obj.transform.localScale = new Vector3(Random.Range(1f, 3f), Random.Range(1f, 3f), 1);
+        if (!isProblem9)
+        {
+            obj.transform.localScale = new Vector3(Random.Range(1f, 3f), Random.Range(1f, 3f), 1);
+        }
+
     }
 
     public void SpawnItemAfter(Vector2 randPos,float delay)
@@ -89,8 +100,8 @@ public class Spawner : MonoBehaviour
         Vector2 pos;
         do
         {
-            var xPosition = Random.Range(-locationX, locationX);
-            var yPosition = Random.Range(-locationY, locationY);
+            var xPosition = Random.Range(locationMinX, locationX);
+            var yPosition = Random.Range(locationMinY, locationY);
             pos = new Vector2(xPosition, yPosition);
         } while (pos.x >= -ballArea + playerPositionX && pos.x <= ballArea + playerPositionX
             && pos.y >= -ballArea + playerPositionY && pos.y <= ballArea + playerPositionY);

@@ -5,8 +5,6 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public float interpVelocity;
-    public float minDistance;
-    public float followDistance;
     public GameObject target;
     public Vector3 offset;
     Vector3 targetPos;
